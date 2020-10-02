@@ -1,0 +1,71 @@
+<div class="container container-fluid ">
+
+
+    <div class="alert alert-info text-center my-3">
+      <h3>Page de consultation d'un utilisateur</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <a type="button" (click)="compte()">Courriers Traiter par cet utilisateur</a>
+        <hr>
+      </div>
+      <div class="col-md-9">
+        <div class="img-thumbnail">
+          <img src="" alt="">
+        </div>
+        <div class="my-3">
+        <table class="table table-responsive-lg table-bordered table-hover">
+
+          <tbody>
+          <tr >
+            <td>Nom complet</td>
+            <td>{{user.fullname}}</td>
+          </tr>
+          <tr >
+            <td>Email</td>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr >
+            <td>Fonction</td>
+            <td>{{user.fonction}}</td>
+          </tr>
+          <tr >
+            <td>Date de naissance</td>
+            <td>{{user.dateNaissance}}</td>
+          </tr>
+          <tr >
+            <td>Matricule</td>
+            <td>{{user.matricule}}</td>
+          </tr>
+          <tr >
+            <td>Etat</td>
+            <td>
+              <span *ngIf="user.enabled" class="text-success">Actif</span>
+              <span *ngIf="!user.enabled" class="text-danger">Inactif</span>
+            </td>
+          </tr>
+          <tr >
+            <td>Droit d'acces</td>
+            <td>
+              <ul *ngFor="let role of user.roles">
+                <li>{{role.name}}</li>
+              </ul>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+        <div class="ui-button row">
+        <div class="col-md-4">
+          <a href="/users/lists" class="btn btn-lg btn-warning btn-block">Retour</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/users/user-edit/{{user.id}}" class="btn btn-primary btn-block btn-lg">Edit&nbsp;&nbsp;<i class="fa fa-edit"></i></a>
+        </div>
+        <div class="col-md-4">
+          <a href="/users/user-edit-role/{{user.id}}" class="btn btn-secondary btn-block btn-lg">Changer droits&nbsp;&nbsp;<i class="fa fa-edit"></i></a>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>

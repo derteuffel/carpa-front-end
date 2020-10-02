@@ -1,0 +1,23 @@
+<div class="container justify-content-center login" style="max-width: 500px">
+  <form class="form-signin" (ngSubmit)="onSubmit()" novalidate>
+    <div class="alert alert-info text-center text-capitalize">
+      <h1 class="h3 mb-3 font-weight-normal">Page d'ajout d'un utilisateur intervenant dans le courrier</h1>
+    </div>
+    <div class="container-fluid">
+      <div class="form-group">
+        <label for="inputName" class="sr-only">Listes des utilisateurs</label>
+        <select type="text" [(ngModel)]="utilisateurs" class="form-control" name="utilisateurs" multiple id="inputName" required="" autofocus="">
+          <option *ngFor="let item of users | async" value="{{item.email}}">{{item.fullname+' | '+item.fonction}}</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <a href="/courriers/details/{{courrier.id}}" class="btn btn-lg btn-block btn-warning">Retour...</a>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

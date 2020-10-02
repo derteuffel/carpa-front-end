@@ -1,0 +1,46 @@
+<div class="container d-flex justify-content-center login">
+  <form class="form-signin" [formGroup]="courrierForm" style="width: 80%" (ngSubmit)="onSubmit()" novalidate>
+    <div class="alert alert-info text-center text-capitalize">
+      <h1 class="h3 mb-3 font-weight-normal">Page d'ajout d'un courrier</h1>
+    </div>
+    <div class="form-group">
+      <label for="inputObjet" class="sr-only">Objet</label>
+      <input type="text" id="inputObjet" [formControlName]="'objet'" class="form-control" placeholder="Objet" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputExpediteur" class="sr-only">Expediteur</label>
+      <input type="text" id="inputExpediteur" [formControlName]="'senderName'" class="form-control" placeholder="Expediteur" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputDateExpedition" class="sr-only">Date d'expedition</label>
+      <input type="date" id="inputDateExpedition" [formControlName]="'senderDate'" class="form-control" placeholder="Date d'expedition" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputDestinataire" class="sr-only">Destinataire</label>
+      <input type="text" id="inputDestinataire" [formControlName]="'receiverName'" class="form-control" placeholder="Destinataire" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputDateReception" class="sr-only">Date de reception</label>
+      <input type="date" id="inputDateReception" [formControlName]="'receiverDate'" class="form-control" placeholder="Date de reception" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputReferenceNumber" class="sr-only">Numero de reference</label>
+      <input type="text" id="inputReferenceNumber" [formControlName]="'referenceNumber'" class="form-control" placeholder="Numero de reference" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputTypeCourrier" class="sr-only">Type de courrier</label>
+      <select [formControlName]="'typeCourrier'" class="form-control" placeholder="Type de courrier" required="" autofocus="" id="inputTypeCourrier">
+        <option value="ENTRANT">ENTRANT</option>
+        <option value="SORTANT">SORTANT</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <a href="/courriers/lists" class="btn  btn-lg btn-warning btn-block">Retour...</a>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-lg btn-success btn-block" type="submit">Enregistrer...</button>
+      </div>
+    </div>
+  </form>
+</div>

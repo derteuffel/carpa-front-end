@@ -1,0 +1,51 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3><span class="title">Rechercher un Utilisateur</span></h3>
+      </div><!-- title -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Rechercher ici ..." >
+        </div>
+      </div>
+      <!-- Connexion et deconnexion -->
+    </div>
+  </div>
+</div>
+<div class="container container-fluid">
+  <div class="alert alert-info text-center my-3">
+    <h3>Page de gestion des Utilisateurs</h3>
+  </div>
+  <div class="my-3">
+    <table class="table table-responsive-lg table-bordered table-hover">
+      <thead class="badge-info">
+      <th>Nom Complet</th>
+      <th>Email</th>
+      <th>Fonction</th>
+      <th>Active</th>
+      <th>Actions</th>
+      </thead>
+      <tbody>
+      <!--<tr *ngFor="let courrier of courriers| async | paginate: { itemsPerPage: 7, currentPage: page } | filter:searchedKeyword">-->
+      <tr *ngFor="let user of lists | async">
+        <td>{{user.fullname}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.fonction}}</td>
+        <td *ngIf="user.enabled"><span class="text-success">Actif</span></td>
+        <td *ngIf="!user.enabled"><span class="text-danger">Inactif</span></td>
+        <td>
+          <a href="/users/user-details/{{user.id}}" class="btn btn-success mx-2">Detail</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!--<pagination-controls class="myPagination"
+                         (pageChange)="handlePageChange($event)"
+                         previousLabel="Prec"
+                         nextLabel="Suiv"
+                         maxSize="4"
+    ></pagination-controls>-->
+
+  </div>
+</div>

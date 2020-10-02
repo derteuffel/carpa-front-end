@@ -1,0 +1,73 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3><span class="title">Rechercher un Courrier</span></h3>
+      </div><!-- title -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Rechercher ici ..." [(ngModel)]="searchedKeyword">
+        </div>
+      </div>
+      <!-- Connexion et deconnexion -->
+    </div>
+  </div>
+</div>
+<div class="container container-fluid">
+  <div class="alert alert-info text-center my-3">
+    <h3>Page de consultation des courriers</h3>
+  </div>
+  <div class="ui-button d-flex justify-content-end">
+    <a href="/courriers/form" class="btn btn-primary">Nouveau courrier&nbsp;&nbsp;<i class="fa fa-plus"></i></a>
+  </div>
+  <div class="my-3 row">
+    <div class="col-md-3">
+      <div class="card-body">
+        <a type="button" (click)="entrant('ENTRANT')">Courriers entrants</a>
+        <hr>
+        <a type="button" (click)="sortant('SORTANT')">Courriers sortants</a>
+        <hr>
+        <a  type="button" (click)="compte()">Courrier gerer par le compte</a>
+        <hr>
+        <a type="button" (click)="courrierArchive()">Courrier archives</a>
+        <hr>
+        <a type="button" (click)="courrierActif()">Courrier actifs</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <table class="table  table-responsive table-bordered table-hover">
+        <thead class="badge-info">
+        <th>Objet</th>
+        <th>Nom Expediteur</th>
+        <th>Date d'expedition</th>
+        <th>Nom Recepteur</th>
+        <th>Date de reception</th>
+        <th>Num Reference</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let courrier of courriers| async | paginate: { itemsPerPage: 7, currentPage: page } | filter:searchedKeyword">
+            <td>{{courrier.objet}}</td>
+            <td>{{courrier.senderName}}</td>
+            <td>{{courrier.senderDate}}</td>
+            <td>{{courrier.receiverName}}</td>
+            <td>{{courrier.receiverDate}}</td>
+            <td>{{courrier.referenceNumber}}</td>
+            <td>
+              <a href="/courriers/update/{{courrier.id}}" class="btn btn-primary m-2">Edit</a>
+              <a href="/courriers/details/{{courrier.id}}" class="btn btn-success m-2">Detail</a>
+              <button (click)="delete(courrier.id)" class="btn btn-danger m-2">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!--<pagination-controls class="myPagination"
+                           (pageChange)="handlePageChange($event)"
+                           previousLabel="Prec"
+                           nextLabel="Suiv"
+                           maxSize="4"
+      ></pagination-controls>-->
+    </div>
+
+  </div>
+</div>

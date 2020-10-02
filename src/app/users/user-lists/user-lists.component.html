@@ -1,0 +1,72 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <h3><span class="title">Rechercher un Utilisateur</span></h3>
+      </div><!-- title -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Rechercher ici ..." [(ngModel)]="searchedKeyword">
+        </div>
+      </div>
+      <!-- Connexion et deconnexion -->
+    </div>
+  </div>
+</div>
+<div class="container container-fluid">
+  <div class="alert alert-info text-center my-3">
+    <h3>Page de gestion des Utilisateurs</h3>
+  </div>
+  <div class="card">
+    <div class="m-2">
+      <div class="alert alert-warning">
+        <h4>Ajouter un nouveau Compte d'utilisateur</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-4 col-sm-6 px-2 d-flex justify-content-center" >
+            <a style="width: 100%" href="/users/form/expert" class="btn btn-primary">Expert</a>
+          </div>
+          <div class="col-xl-4 col-sm-6 px-2 d-flex justify-content-center" >
+            <a style="width: 100%" href="/users/form/coordonateur" class="btn btn-primary">Coordonateur</a>
+          </div>
+          <div class="col-xl-4 col-sm-6 px-2 d-flex justify-content-center" >
+            <a style="width: 100%" href="/users/form/secretaire" class="btn btn-primary">Secretaire</a>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="my-3">
+    <table class="table table-responsive-lg table-bordered table-hover">
+      <thead class="badge-info">
+      <th>Nom Complet</th>
+      <th>Email</th>
+      <th>Fonction</th>
+      <th>Active</th>
+      <th>Actions</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users| async | paginate: { itemsPerPage: 7, currentPage: page } | filter:searchedKeyword">
+        <td>{{user.fullname}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.fonction}}</td>
+        <td *ngIf="user.enabled"><span class="text-success">Actif</span></td>
+        <td *ngIf="!user.enabled"><span class="text-danger">Inactif</span></td>
+        <td>
+          <a href="/users/user-edit/{{user.id}}" class="btn btn-primary mx-2">Edit</a>
+          <a href="/users/user-details/{{user.id}}" class="btn btn-success mx-2">Detail</a>
+          <button (click)="delete(user.id)" class="btn btn-danger mx-2">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls class="myPagination"
+                         (pageChange)="handlePageChange($event)"
+                         previousLabel="Prec"
+                         nextLabel="Suiv"
+                         maxSize="4"
+    ></pagination-controls>
+
+  </div>
+</div>

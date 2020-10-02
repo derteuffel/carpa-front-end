@@ -1,0 +1,86 @@
+<div class="container container-fluid">
+    <div class="alert alert-info text-center my-3">
+      <h3>Page de consultation d'un courrier</h3>
+    </div>
+  <div class="row">
+    <div class="col-md-3">
+      <a  type="button" (click)="utilisateurs()">Utilisateurs intervenant dans ce courrier</a>
+      <hr>
+      <a type="button" (click)="ajouterUtilisateur()" >Ajouter un intervenant</a>
+      <hr>
+    </div>
+    <div class="col-md-9">
+      <div class="img-thumbnail">
+      <img src="" alt="">
+    </div>
+      <div class="my-3">
+      <table class="table table-responsive-lg table-bordered table-hover">
+
+        <tbody>
+        <tr >
+          <td>Objet</td>
+          <td>{{courrier.objet}}</td>
+        </tr>
+        <tr >
+          <td>Numero de reference</td>
+          <td>{{courrier.referenceNumber}}</td>
+        </tr>
+        <tr >
+          <td>Expediteur</td>
+          <td>{{courrier.senderName}}</td>
+        </tr>
+        <tr >
+          <td>Date d'envoi</td>
+          <td>{{courrier.senderDate}}</td>
+        </tr>
+        <tr >
+          <td>Destinataire</td>
+          <td>{{courrier.receiverName}}</td>
+        </tr>
+        <tr >
+          <td>Date de reception</td>
+          <td>{{courrier.receiverDate}}</td>
+        </tr>
+        <tr >
+          <td>Compte utilisateur d'ajout</td>
+          <td>{{courrier.saver}}</td>
+        </tr>
+        <tr >
+          <td>Date d'ajout</td>
+          <td>{{courrier.addedDate}}</td>
+        </tr>
+        <tr >
+          <td>Type de courrier</td>
+          <td>
+            {{courrier.typeCourrier}}
+          </td>
+        </tr>
+        <tr >
+          <td>Status du courrier</td>
+          <td>
+            <span *ngIf="courrier.status" class="text-warning">Non archive</span>
+            <span *ngIf="!courrier.status" class="text-success">Archive</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+      <div *ngIf="!courrier.status" class="ui-button">
+        <div style="max-width: 350px">
+          <a href="/courriers/lists" class="btn btn-lg btn-warning btn-block">Retour</a>
+        </div>
+      </div>
+      <div *ngIf="courrier.status" class="ui-button row">
+        <div class="col-md-4">
+          <a href="/courriers/lists" class="btn btn-lg btn-warning btn-block">Retour</a>
+        </div>
+        <div class="col-md-4">
+          <a href="/courriers/update/{{courrier.id}}" class="btn btn-primary btn-block btn-lg">Edit&nbsp;&nbsp;<i class="fa fa-edit"></i></a>
+        </div>
+        <div class="col-md-4">
+          <a type="button" (click)="archiver()" class="btn btn-block btn-lg btn-secondary">Archiver</a>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ import {Courriers} from '../courriers';
 import {Observable} from 'rxjs';
 import {UserDetail} from '../../users/user-details/user-detail';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CourrierService} from '../../courrier.service';
+import {CourrierService} from '../../services/courrier.service';
 import {UserService} from '../../users/user.service';
 
 @Component({

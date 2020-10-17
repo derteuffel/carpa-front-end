@@ -4,7 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../user.service';
 import {UserPayload} from '../user-details/user-payload';
-import {AuthService} from '../../auth.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-update',
@@ -18,6 +18,8 @@ export class UserUpdateComponent implements OnInit {
   dateNaissance: Date;
   userPayload: UserPayload;
   permalink: number;
+  rolesList: string[];
+  roles: string[];
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private userService: UserService, private router: Router) {
     this.userPayload = {
@@ -25,7 +27,10 @@ export class UserUpdateComponent implements OnInit {
       fullname: '',
       dateNaissance: new Date(),
       matricule: '',
-      fonction: ''
+      fonction: '',
+      password: '',
+      username: '',
+      roles: []
     };
   }
 
@@ -42,6 +47,7 @@ export class UserUpdateComponent implements OnInit {
         console.log('User fetched failled');
       }
     });
+    this.rolesList = ['root', 'coordonateur', 'expert', 'secretaire'];
   }
 
   onSubmit(){
@@ -51,6 +57,9 @@ export class UserUpdateComponent implements OnInit {
     this.userPayload.dateNaissance = this.dateNaissance;
     this.userPayload.fullname = this.user.fullname;
     this.userPayload.email = this.user.email;
+    this.userPayload.username = this.user.username;
+    this.userPayload.roles = this.roles;
+
 
     this.authService.updateUser(this.userPayload, this.permalink).subscribe(
       data => {

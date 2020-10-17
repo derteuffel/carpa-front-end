@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Courriers} from '../courriers';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CourrierService} from '../../courrier.service';
+import {CourrierService} from '../../services/courrier.service';
 
 @Component({
   selector: 'app-courrier-details',
@@ -50,6 +50,10 @@ export class CourrierDetailsComponent implements OnInit {
         }
       }
     );
+  }
+
+  upload(){
+    this.router.navigateByUrl('/courriers/details/add-files/' + this.permalink);
   }
 
   ajouterUtilisateur(){

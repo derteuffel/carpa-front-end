@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Courriers} from '../courriers';
 import {CourrierPayload} from '../courrier-payload';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CourrierService} from '../../courrier.service';
+import {CourrierService} from '../../services/courrier.service';
 import {UserDetail} from '../../users/user-details/user-detail';
 
 @Component({

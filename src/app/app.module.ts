@@ -16,10 +16,7 @@ import { HeaderComponent } from './auth/header/header.component';
 import { UserListsComponent } from './users/user-lists/user-lists.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { UserUpdateComponent } from './users/user-update/user-update.component';
-import { UserAddExpertComponent } from './users/user-add/user-add-expert/user-add-expert.component';
-import { UserAddSecretaireComponent } from './users/user-add/user-add-secretaire/user-add-secretaire.component';
 import { UserAddCoordonateurComponent } from './users/user-add/user-add-coordonateur/user-add-coordonateur.component';
-import { UserAddRootComponent } from './users/user-add/user-add-root/user-add-root.component';
 import { AddCourrierComponent } from './courriers/add-courrier/add-courrier.component';
 import { CourrierDetailsComponent } from './courriers/courrier-details/courrier-details.component';
 import { CourrierUpdateComponent } from './courriers/courrier-update/courrier-update.component';
@@ -28,13 +25,14 @@ import { CourrierUsersComponent } from './courriers/courrier-users/courrier-user
 import { CourrierAddUsersComponent } from './courriers/courrier-add-users/courrier-add-users.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { CourrierAddFilesComponent } from './courriers/courrier-add-files/courrier-add-files.component';
 
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'courriers',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -61,6 +59,11 @@ const routes: Routes = [
     path: 'courriers/details/add-users/:id',
     component: CourrierAddUsersComponent,
     data: { title: 'Courrier add users' }
+  },
+  {
+    path: 'courriers/details/add-files/:id',
+    component: CourrierAddFilesComponent,
+    data: { title: 'Courrier add files upload' }
   },
   {
     path: 'courriers/update/:id',
@@ -93,19 +96,9 @@ const routes: Routes = [
     data: {title: 'Edition roles for an Account'}
   },
   {
-    path: 'users/form/expert',
-    component: UserAddExpertComponent,
-    data: {title: 'Account form for Expert'}
-  },
-  {
-    path: 'users/form/secretaire',
-    component: UserAddSecretaireComponent,
-    data: {title: 'Account form for Secretaire'}
-  },
-  {
-    path: 'users/form/coordonateur',
+    path: 'users/form',
     component: UserAddCoordonateurComponent,
-    data: {title: 'Account form for Coordonateur'}
+    data: {title: 'Account new form'}
   }
 ];
 
@@ -120,16 +113,14 @@ const routes: Routes = [
     UserListsComponent,
     UserDetailsComponent,
     UserUpdateComponent,
-    UserAddExpertComponent,
-    UserAddSecretaireComponent,
     UserAddCoordonateurComponent,
-    UserAddRootComponent,
     AddCourrierComponent,
     CourrierDetailsComponent,
     CourrierUpdateComponent,
     UserEditRoleComponent,
     CourrierUsersComponent,
-    CourrierAddUsersComponent
+    CourrierAddUsersComponent,
+    CourrierAddFilesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {UserDetail} from './user-details/user-detail';
 import {catchError, tap} from 'rxjs/internal/operators';
@@ -12,21 +12,30 @@ const apiUrl = 'http://localhost:8080/api/users';
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  currentUser: UserDetail;
+  headers: HttpHeaders;
+
+  constructor(private http: HttpClient) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.headers = new HttpHeaders({
+      authorization: 'Bearer ' + this.currentUser.token,
+      'Content-Type': 'application/json; charset=UTF-8'
+    });
+  }
 
   getAllUsers(): Observable<UserDetail[]> {
-    return this.http.get<UserDetail[]>(apiUrl).pipe(
+    return this.http.get<UserDetail[]>(apiUrl,  {headers: this.headers}).pipe(
       tap(_ => this.log('fetched Users')),
       catchError(this.handleError('getUsers', []))
     );
   }
 
   getUser(id: number): Observable<any> {
-    return this.http.get(apiUrl + '/' + id);
+    return this.http.get(apiUrl + '/' + id, {headers: this.headers});
   }
 
   changeRoles(id: number, name: string): Observable<any> {
-    return this.http.get(apiUrl + '/roles/' + name + '/' + id);
+    return this.http.get(apiUrl + '/roles/' + name + '/' + id, {headers: this.headers});
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CourrierService} from '../../courrier.service';
+import {CourrierService} from '../../services/courrier.service';
 import {Observable} from 'rxjs';
 import {UserDetail} from '../../users/user-details/user-detail';
 import {ActivatedRoute} from '@angular/router';

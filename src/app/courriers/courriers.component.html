@@ -23,15 +23,15 @@
   <div class="my-3 row">
     <div class="col-md-3">
       <div class="card-body">
-        <a type="button" (click)="entrant('ENTRANT')">Courriers entrants</a>
+        <a type="button" (click)="entrant('ENTRANT')">Courriers entrants&nbsp;<i class="fa fa-hand-o-left"></i></a>
         <hr>
-        <a type="button" (click)="sortant('SORTANT')">Courriers sortants</a>
+        <a type="button" (click)="sortant('SORTANT')">Courriers sortants&nbsp;<i class="fa fa-hand-o-right"></i></a>
         <hr>
-        <a  type="button" (click)="compte()">Courrier gerer par le compte</a>
+        <a  type="button" (click)="compte()">Courrier gerer par le compte&nbsp;<i class="fa fa-user-circle-o"></i></a>
         <hr>
-        <a type="button" (click)="courrierArchive()">Courrier archives</a>
+        <a type="button" (click)="courrierArchive()">Courrier archives&nbsp;<i class="fa fa-lock"></i></a>
         <hr>
-        <a type="button" (click)="courrierActif()">Courrier actifs</a>
+        <a type="button" (click)="courrierActif()">Courrier actifs&nbsp;<i class="fa fa-unlock"></i></a>
       </div>
     </div>
     <div class="col-md-9">
@@ -54,9 +54,9 @@
             <td>{{courrier.receiverDate}}</td>
             <td>{{courrier.referenceNumber}}</td>
             <td>
-              <a href="/courriers/update/{{courrier.id}}" class="btn btn-primary m-2">Edit</a>
-              <a href="/courriers/details/{{courrier.id}}" class="btn btn-success m-2">Detail</a>
-              <button (click)="delete(courrier.id)" class="btn btn-danger m-2">Delete</button>
+              <a href="/courriers/update/{{courrier.id}}" class="btn btn-primary m-2"><i class="fa fa-pencil"></i></a>
+              <a href="/courriers/details/{{courrier.id}}" class="btn btn-success m-2"><i class="fa fa-eye"></i></a>
+              <button (click)="delete(courrier.id)" class="btn btn-danger m-2"><i class="fa fa-trash"></i></button>
             </td>
           </tr>
         </tbody>

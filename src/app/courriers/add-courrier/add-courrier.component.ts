@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CourrierPayload} from '../courrier-payload';
-import {AuthService} from '../../auth.service';
-import {CourrierService} from '../../courrier.service';
+import {AuthService} from '../../services/auth.service';
+import {CourrierService} from '../../services/courrier.service';
 import {Router} from '@angular/router';
 
 @Component({

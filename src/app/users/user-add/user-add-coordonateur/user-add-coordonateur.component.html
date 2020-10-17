@@ -8,8 +8,16 @@
       <input type="text" id="inputFullname" [formControlName]="'fullname'" class="form-control" placeholder="Nom complet" required="" autofocus="">
     </div>
     <div class="form-group">
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="text" id="inputUsername" [formControlName]="'username'" class="form-control" placeholder="Username" required="" autofocus="">
+    </div>
+    <div class="form-group">
       <label for="inputEmail" class="sr-only">Adresse Email</label>
       <input type="text" id="inputEmail" [formControlName]="'email'" class="form-control" placeholder="Email" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" [formControlName]="'password'" class="form-control" placeholder="Password" required="" autofocus="">
     </div>
     <div class="form-group">
       <label for="inputFonction" class="sr-only">Fonction</label>
@@ -22,6 +30,12 @@
     <div class="form-group">
       <label for="inputDateNaissance" class="sr-only">Date de naissance</label>
       <input type="date" id="inputDateNaissance" [formControlName]="'dateNaissance'" class="form-control" placeholder="Date de naissance" required="" autofocus="">
+    </div>
+    <div class="form-group">
+      <label for="inputRole" class="sr-only">Roles</label>
+      <select [formControlName]="'roles'" id="inputRole" multiple class="form-control">
+        <option *ngFor="let item of rolesList" [value]="item">{{item}}</option>
+      </select>
     </div>
     <div class="row">
       <div class="col-md-6">

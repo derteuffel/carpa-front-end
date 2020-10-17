@@ -3,50 +3,25 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/internal/operators';
+import {TokenStorageService} from '../services/token-storage.service';
 
+
+const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = localStorage.getItem('token');
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          'Authorization' : 'Bearer ' + token
-        }
-      });
+  constructor(private router: Router, private token: TokenStorageService) {}
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let authReq = req;
+    const token = this.token.getToken();
+    if (token != null) {
+      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
     }
-    if (!request.headers.has('Content-Type')) {
-      request = request.clone({
-        setHeaders: {
-          'content-type': 'application/json'
-        }
-      });
-    }
-    request = request.clone({
-      headers: request.headers.set('Accept', 'application/json')
-    });
-    return next.handle(request).pipe(
-      map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
-        }
-        return event;
-      }),
-      catchError((error: HttpErrorResponse) => {
-        console.log(error);
-        if (error.status === 401) {
-          this.router.navigateByUrl('/login');
-        }
-        if (error.status === 400) {
-          alert(error.error);
-        }
-        return throwError(error);
-      }));
+    return next.handle(authReq);
   }
 
 }

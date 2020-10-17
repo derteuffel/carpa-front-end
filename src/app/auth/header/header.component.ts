@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../auth.service';
+import {AuthService} from '../../services/auth.service';
+import {Role} from '../../users/role';
+import {UserDetail} from '../../users/user-details/user-detail';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +13,31 @@ import {AuthService} from '../../auth.service';
 export class HeaderComponent implements OnInit {
   isAuthenticated: boolean;
 
-  constructor(private router: Router, private authService: AuthService) { }
+
+  currentUser: any;
+  constructor(private router: Router, private authService: AuthService, private tokenStorage: TokenStorageService) {
+  }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.checkAuth();
     console.log(this.isAuthenticated);
+    this.currentUser = this.tokenStorage.getUser();
   }
 
 
   logout() {
-    localStorage.removeItem('token');
+    this.tokenStorage.signOut();
     this.router.navigateByUrl('/login');
   }
+
+  checkAuth(){
+    if (this.tokenStorage.getToken() != null){
+      this.isAuthenticated = true;
+    }else {
+      this.isAuthenticated = false;
+    }
+  }
+
+
 
 }

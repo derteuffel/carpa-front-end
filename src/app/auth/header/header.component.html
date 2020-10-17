@@ -1,16 +1,16 @@
 <div class="header">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 col-xl-7">
-        <h3><a href="" class="title">Carpa Gestion des Courriers et Projets</a></h3>
+      <div class="col-sm-6 col-xl-5">
+        <h3><a href="" class="title">Carpa GECOPRO</a></h3>
       </div><!-- title -->
-      <div  class="col-sm-6 col-xl-5" *ngIf="!isAuthenticated">
+      <div  class="col-sm-6 col-xl-7" *ngIf="!isAuthenticated">
         <a href="/login" class="connexion btn btn-default">Connexion&nbsp;<i class="fa fa-sign-in"></i></a>
       </div><!-- Connexion et deconnexion -->
-      <div  class="col-sm-6 col-xl-5" *ngIf="isAuthenticated">
-        <button (click)="logout()"  class="connexion btn btn-default">Deconnexion&nbsp;<i class="fa fa-sign-out"></i></button>
-        <a href="/users/lists"  class="connexion btn btn-default">Utilisateurs&nbsp;<i class="fa fa-users"></i></a>
-        <a href="/courriers/lists"  class="connexion btn btn-default">Courriers&nbsp;<i class="fa fa-archives"></i></a>
+      <div  class="col-sm-6 col-xl-7" *ngIf="isAuthenticated">
+        <button (click)="logout()"  class="connexion btn btn-default">{{currentUser.username}}/Deconnexion&nbsp;<i class="fa fa-sign-out"></i></button>
+        <a href="/users/lists" class="connexion btn btn-default">Utilisateurs&nbsp;<i class="fa fa-users"></i></a>
+        <a href="/courriers/lists"  class="connexion btn btn-default">Courriers&nbsp;<i class="fa fa-archive"></i></a>
         <a href="/projets/lists"  class="connexion btn btn-default">Projets&nbsp;<i class="fa fa-book"></i></a>
       </div><!-- Connexion et deconnexion -->
     </div>

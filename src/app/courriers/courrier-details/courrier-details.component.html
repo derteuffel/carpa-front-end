@@ -4,10 +4,11 @@
     </div>
   <div class="row">
     <div class="col-md-3">
-      <a  type="button" (click)="utilisateurs()">Utilisateurs intervenant dans ce courrier</a>
+      <a  type="button" (click)="utilisateurs()">Utilisateurs intervenant dans ce courrier &nbsp;<i class="fa fa-users"></i></a>
       <hr>
-      <a type="button" (click)="ajouterUtilisateur()" >Ajouter un intervenant</a>
+      <a type="button" (click)="ajouterUtilisateur()" >Ajouter un intervenant &nbsp;<i class="fa fa-user"></i></a>
       <hr>
+      <a type="button" (click)="upload()">Charger un/des fichier numeriques &nbsp;<i class="fa fa-upload"></i></a>
     </div>
     <div class="col-md-9">
       <div class="img-thumbnail">
@@ -72,13 +73,13 @@
       </div>
       <div *ngIf="courrier.status" class="ui-button row">
         <div class="col-md-4">
-          <a href="/courriers/lists" class="btn btn-lg btn-warning btn-block">Retour</a>
+          <a href="/courriers/lists" class="btn btn-lg btn-warning btn-block"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp;Retour</a>
         </div>
         <div class="col-md-4">
           <a href="/courriers/update/{{courrier.id}}" class="btn btn-primary btn-block btn-lg">Edit&nbsp;&nbsp;<i class="fa fa-edit"></i></a>
         </div>
         <div class="col-md-4">
-          <a type="button" (click)="archiver()" class="btn btn-block btn-lg btn-secondary">Archiver</a>
+          <a type="button" (click)="archiver()" class="btn btn-block btn-lg btn-secondary">Archiver&nbsp;&nbsp;<i class="fa fa-archive"></i></a>
         </div>
     </div>
     </div>

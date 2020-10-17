@@ -1,0 +1,41 @@
+<div class="container justify-content-center login" style="max-width: 500px">
+  <form class="form-signin" enctype="multipart/form-data" novalidate>
+    <div class="alert alert-info text-center text-capitalize">
+      <h1 class="h3 mb-3 font-weight-normal">Page de chargement de fichiers</h1>
+    </div>
+    <div *ngIf="currentFile" class="progress">
+      <div
+        class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar"
+        attr.aria-valuenow="{{ progress }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progress + '%' }"
+      >
+        {{ progress }}%
+      </div>
+    </div>
+
+    <label class="btn btn-default">
+      <input type="file" (change)="selectFile($event)" />
+    </label>
+
+    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+      Upload
+    </button>
+
+    <div class="alert alert-light" role="alert">{{ message }}</div>
+
+    <div class="card">
+      <div class="card-header">List of Files</div>
+      <ul
+        class="list-group list-group-flush"
+        *ngFor="let file of fileInfos | async"
+      >
+        <li class="list-group-item">
+          <a href="{{ file.url }}">{{ file.name }}</a>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>
